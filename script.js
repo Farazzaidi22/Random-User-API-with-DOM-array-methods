@@ -44,6 +44,24 @@ function sortByRichest(){
     updateDOM()
 }
 
+function showMillionaires(){
+    data = data.filter(function(user){
+        return user.money > 1000000
+    })
+
+    updateDOM()
+}
+
+function calculateWealth(){
+    const wealth = data.reduce(function(acc, user){
+        return acc += user.money
+    }, 0)
+
+    const wealthEl = document.createElement('div')
+    wealthEl.innerHTML = `<h3><strong>Total Wealth: </strong>${formatMoney(wealth)}</h3>`
+    main.appendChild(wealthEl)
+}
+
 //Add new obj to data arr
 function addData(obj){
     data.push(obj)
@@ -74,5 +92,9 @@ function formatMoney(number){
 addUserBtn.addEventListener('click', getRandomUser)
 doubleBtn.addEventListener('click', doubleMoney)
 sortBtn.addEventListener('click', sortByRichest)
+showMillionairesBtn.addEventListener('click', showMillionaires)
+calculateWealthBtn.addEventListener('click', calculateWealth)
+
+
 
 
